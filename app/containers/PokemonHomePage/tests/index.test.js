@@ -7,42 +7,35 @@
  */
 
 import React from 'react';
-import { render } from 'react-testing-library';
+import renderer from 'react-test-renderer';
 import { IntlProvider } from 'react-intl';
+import { Provider } from 'react-redux';
+import { browserHistory } from 'react-router-dom';
+
+import configureStore from '../../../configureStore';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
 import { PokemonHomePage } from '../index';
-import { DEFAULT_LOCALE } from '../../../i18n';
+// import { DEFAULT_LOCALE } from '../../../i18n';
 
 describe('<PokemonHomePage />', () => {
-  it('Expect to not log errors in console', () => {
-    const spy = jest.spyOn(global.console, 'error');
-    const dispatch = jest.fn();
-    render(
-      <IntlProvider locale={DEFAULT_LOCALE}>
-        <PokemonHomePage dispatch={dispatch} />
-      </IntlProvider>,
-    );
-    expect(spy).not.toHaveBeenCalled();
+  let store;
+
+  beforeAll(() => {
+    store = configureStore({}, browserHistory);
   });
 
-  it('Expect to have additional unit tests specified', () => {
-    expect(true).toEqual(false);
-  });
+  it('should render and match the snapshot', () => {
+    const renderedComponent = renderer
+      .create(
+        <Provider store={store}>
+          <IntlProvider locale="en">
+            <PokemonHomePage />
+          </IntlProvider>
+        </Provider>,
+      )
+      .toJSON();
 
-  /**
-   * Unskip this test to use it
-   *
-   * @see {@link https://jestjs.io/docs/en/api#testskipname-fn}
-   */
-  it.skip('Should render and match the snapshot', () => {
-    const {
-      container: { firstChild },
-    } = render(
-      <IntlProvider locale={DEFAULT_LOCALE}>
-        <PokemonHomePage />
-      </IntlProvider>,
-    );
-    expect(firstChild).toMatchSnapshot();
+    expect(renderedComponent).toMatchSnapshot();
   });
 });
