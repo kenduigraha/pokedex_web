@@ -2,12 +2,15 @@ import { call, put, all, takeLatest } from 'redux-saga/effects';
 import {
   GET_POKEMON_LIST_START,
   GET_POKEMON_DETAIL_START,
+  GET_POKEMON_TYPES_START,
 } from 'containers/PokemonHomePage/constants';
 import {
   getPokemonListSuccess,
   getPokemonListFailed,
   getPokemonDetailSuccess,
   getPokemonDetailFailed,
+  getPokemonTypesListSuccess,
+  getPokemonTypesListFailed,
 } from 'containers/PokemonHomePage/actions';
 
 import { POKEMON } from 'utils/api';
@@ -28,6 +31,15 @@ export function* getPokemonList({
   }
 }
 
+export function* getPokemonTypesList() {
+  try {
+    const data = yield call(request, POKEMON.TYPE);
+    yield put(getPokemonTypesListSuccess(data));
+  } catch (err) {
+    yield put(getPokemonTypesListFailed(err));
+  }
+}
+
 export function* getPokemonDetail({ data }) {
   try {
     const response = yield call(request, `${POKEMON.BASE_URL}/${data}`);
@@ -44,5 +56,6 @@ export default function* pokemonHomePageSaga() {
   yield all([
     yield takeLatest(GET_POKEMON_LIST_START, getPokemonList),
     yield takeLatest(GET_POKEMON_DETAIL_START, getPokemonDetail),
+    yield takeLatest(GET_POKEMON_TYPES_START, getPokemonTypesList),
   ]);
 }

@@ -13,6 +13,9 @@ import {
   GET_POKEMON_DETAIL_START,
   GET_POKEMON_DETAIL_SUCCESS,
   GET_POKEMON_DETAIL_FAILED,
+  GET_POKEMON_TYPES_START,
+  GET_POKEMON_TYPES_SUCCESS,
+  GET_POKEMON_TYPES_FAILED,
 } from './constants';
 
 export const initialState = {
@@ -24,6 +27,11 @@ export const initialState = {
   },
   pokemonDetail: {
     data: {},
+    error: {},
+    isLoading: false,
+  },
+  pokemonTypes: {
+    data: [],
     error: {},
     isLoading: false,
   },
@@ -73,6 +81,20 @@ const pokemonHomePageReducer = (state = initialState, action) =>
         draft.pokemonDetail.isLoading = false;
         draft.pokemonDetail.data = [];
         draft.pokemonDetail.error = action.error;
+        break;
+
+      // GET LIST POKEMON TYPES
+      case GET_POKEMON_TYPES_START:
+        draft.pokemonTypes.isLoading = true;
+        break;
+      case GET_POKEMON_TYPES_SUCCESS:
+        draft.pokemonTypes.isLoading = false;
+        draft.pokemonTypes.data = action.data.results;
+        break;
+      case GET_POKEMON_TYPES_FAILED:
+        draft.pokemonTypes.isLoading = false;
+        draft.pokemonTypes.data = [];
+        draft.pokemonTypes.error = action.error;
         break;
     }
   });
