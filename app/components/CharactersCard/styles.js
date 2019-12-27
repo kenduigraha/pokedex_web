@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { col } from 'antd';
 
-export default styled(col)`
+const CharactersCardCol = styled(col)`
   margin-bottom: 30px;
 `;
+
+export default CharactersCardCol;

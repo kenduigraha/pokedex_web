@@ -17,6 +17,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import {
   getPokemonListStart,
   updateFlagInfinityStart,
+  getPokemonTypesListStart,
   // getPokemonDetailStart,
 } from 'containers/PokemonHomePage/actions';
 import PokemonFilter from 'components/PokemonFilter';
@@ -31,17 +32,18 @@ export function PokemonHomePage({ dispatch, pokemonHomePage }) {
   useInjectReducer({ key: 'pokemonHomePage', reducer });
   useInjectSaga({ key: 'pokemonHomePage', saga });
 
-  const { pokemonList } = pokemonHomePage;
-
+  const { pokemonList, pokemonTypes } = pokemonHomePage;
   /**
    * dispatch actions
    */
   const getPokemonList = params => dispatch(getPokemonListStart(params));
+  const getPokemonTypesList = () => dispatch(getPokemonTypesListStart());
   const updateFlagInfinity = flag => dispatch(updateFlagInfinityStart(flag));
   // const getPokemonDetail = data => dispatch(getPokemonDetailStart(data));
 
   useEffect(() => {
     getPokemonList({ offset: 0, limit: 20, name: '' });
+    getPokemonTypesList();
   }, []);
 
   useEffect(() => {
@@ -64,7 +66,10 @@ export function PokemonHomePage({ dispatch, pokemonHomePage }) {
         <title>PokemonHomePage</title>
         <meta name="description" content="Description of PokemonHomePage" />
       </Helmet>
-      <PokemonFilter getPokemonList={getPokemonList} />
+      <PokemonFilter
+        getPokemonList={getPokemonList}
+        pokemonTypes={pokemonTypes.data}
+      />
       <PokemonList
         pokemonList={pokemonList}
         getPokemonList={getPokemonList}
