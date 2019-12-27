@@ -19,7 +19,7 @@ import {
   updateFlagInfinityStart,
   getPokemonTypesListStart,
   getPokemonListByTypeStart,
-  // getPokemonDetailStart,
+  getPokemonDetailStart,
 } from 'containers/PokemonHomePage/actions';
 import PokemonFilter from 'components/PokemonFilter';
 import PokemonList from 'components/PokemonList';
@@ -27,13 +27,12 @@ import { notification } from 'antd';
 import makeSelectPokemonHomePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-// import messages from './messages';
 
 export function PokemonHomePage({ dispatch, pokemonHomePage }) {
   useInjectReducer({ key: 'pokemonHomePage', reducer });
   useInjectSaga({ key: 'pokemonHomePage', saga });
 
-  const { pokemonList, pokemonTypes } = pokemonHomePage;
+  const { pokemonList, pokemonTypes, pokemonDetail } = pokemonHomePage;
   /**
    * dispatch actions
    */
@@ -42,7 +41,7 @@ export function PokemonHomePage({ dispatch, pokemonHomePage }) {
     dispatch(getPokemonListByTypeStart(type));
   const getPokemonTypesList = () => dispatch(getPokemonTypesListStart());
   const updateFlagInfinity = flag => dispatch(updateFlagInfinityStart(flag));
-  // const getPokemonDetail = data => dispatch(getPokemonDetailStart(data));
+  const getPokemonDetail = data => dispatch(getPokemonDetailStart(data));
 
   useEffect(() => {
     getPokemonList({ offset: 0, limit: 20, name: '' });
@@ -78,6 +77,8 @@ export function PokemonHomePage({ dispatch, pokemonHomePage }) {
         pokemonList={pokemonList}
         getPokemonList={getPokemonList}
         updateFlagInfinity={updateFlagInfinity}
+        getPokemonDetail={getPokemonDetail}
+        pokemonDetail={pokemonDetail}
       />
     </div>
   );
