@@ -2,8 +2,26 @@
 
 exports[`<PokemonHomePage /> should render and match the snapshot 1`] = `
 <div>
-  <span>
-    This is the PokemonHomePage container!
-  </span>
+  <div
+    id="content"
+    style={
+      Object {
+        "background": "#ECECEC",
+        "padding": "30px",
+      }
+    }
+  >
+    <div>
+      <div
+        className="ant-row"
+        style={
+          Object {
+            "marginLeft": -12,
+            "marginRight": -12,
+          }
+        }
+      />
+    </div>
+  </div>
 </div>
 `;

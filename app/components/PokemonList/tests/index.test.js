@@ -13,13 +13,18 @@ import { IntlProvider } from 'react-intl';
 
 import PokemonList from '../index';
 import { DEFAULT_LOCALE } from '../../../i18n';
+import { initialState } from '../../../containers/PokemonHomePage/reducer';
 
 describe('<PokemonList />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
     render(
       <IntlProvider locale={DEFAULT_LOCALE}>
-        <PokemonList />
+        <PokemonList
+          pokemonList={{ ...initialState.pokemonList }}
+          getPokemonList={() => {}}
+          updateFlagInfinity={() => {}}
+        />
       </IntlProvider>,
     );
     expect(spy).not.toHaveBeenCalled();
@@ -39,7 +44,11 @@ describe('<PokemonList />', () => {
       container: { firstChild },
     } = render(
       <IntlProvider locale={DEFAULT_LOCALE}>
-        <PokemonList />
+        <PokemonList
+          pokemonList={{ ...initialState.pokemonList }}
+          getPokemonList={() => {}}
+          updateFlagInfinity={() => {}}
+        />
       </IntlProvider>,
     );
     expect(firstChild).toMatchSnapshot();

@@ -1,9 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<PokemonList /> Should render and match the snapshot 1`] = `
-<div>
-  <span>
-    This is the PokemonList component!
-  </span>
+<div
+  id="content"
+  style="background: rgb(236, 236, 236); padding: 30px;"
+>
+  <div>
+    <div
+      class="ant-row"
+      style="margin-left: -12px; margin-right: -12px;"
+    />
+  </div>
 </div>
 `;

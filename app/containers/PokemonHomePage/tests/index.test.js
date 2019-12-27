@@ -12,6 +12,7 @@ import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router-dom';
 
+import { initialState } from 'containers/PokemonHomePage/reducer';
 import configureStore from '../../../configureStore';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
@@ -30,7 +31,9 @@ describe('<PokemonHomePage />', () => {
       .create(
         <Provider store={store}>
           <IntlProvider locale="en">
-            <PokemonHomePage />
+            <PokemonHomePage
+              pokemonHomePage={{ pokemonList: { ...initialState.pokemonList } }}
+            />
           </IntlProvider>
         </Provider>,
       )
