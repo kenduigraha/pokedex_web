@@ -10,6 +10,9 @@ import {
   GET_POKEMON_LIST_SUCCESS,
   GET_POKEMON_LIST_FAILED,
   UPDATE_FLAG_INFINITY,
+  GET_POKEMON_DETAIL_START,
+  GET_POKEMON_DETAIL_SUCCESS,
+  GET_POKEMON_DETAIL_FAILED,
 } from './constants';
 
 export function defaultAction() {
@@ -43,5 +46,26 @@ export function updateFlagInfinityStart(flag) {
   return {
     type: UPDATE_FLAG_INFINITY,
     data: flag,
+  };
+}
+
+export function getPokemonDetailStart(data) {
+  return {
+    type: GET_POKEMON_DETAIL_START,
+    data,
+  };
+}
+
+export function getPokemonDetailSuccess(data) {
+  return {
+    type: GET_POKEMON_DETAIL_SUCCESS,
+    data,
+  };
+}
+
+export function getPokemonDetailFailed(error) {
+  return {
+    type: GET_POKEMON_DETAIL_FAILED,
+    error,
   };
 }

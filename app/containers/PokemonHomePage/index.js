@@ -17,8 +17,11 @@ import { useInjectReducer } from 'utils/injectReducer';
 import {
   getPokemonListStart,
   updateFlagInfinityStart,
+  // getPokemonDetailStart,
 } from 'containers/PokemonHomePage/actions';
+import PokemonFilter from 'components/PokemonFilter';
 import PokemonList from 'components/PokemonList';
+import { notification } from 'antd';
 import makeSelectPokemonHomePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -35,10 +38,25 @@ export function PokemonHomePage({ dispatch, pokemonHomePage }) {
    */
   const getPokemonList = params => dispatch(getPokemonListStart(params));
   const updateFlagInfinity = flag => dispatch(updateFlagInfinityStart(flag));
+  // const getPokemonDetail = data => dispatch(getPokemonDetailStart(data));
 
   useEffect(() => {
-    getPokemonList({ offset: 0, limit: 20 });
+    getPokemonList({ offset: 0, limit: 20, name: '' });
   }, []);
+
+  useEffect(() => {
+    const { error } = pokemonList;
+
+    // check object error is not empty
+    if (Object.keys(error).length > 0) {
+      if (error.response.status === 404) {
+        // not found
+        notification.info({
+          message: 'Pokémon Not Found',
+        });
+      }
+    }
+  }, [pokemonList.data]);
 
   return (
     <div>
@@ -46,6 +64,7 @@ export function PokemonHomePage({ dispatch, pokemonHomePage }) {
         <title>PokemonHomePage</title>
         <meta name="description" content="Description of PokemonHomePage" />
       </Helmet>
+      <PokemonFilter getPokemonList={getPokemonList} />
       <PokemonList
         pokemonList={pokemonList}
         getPokemonList={getPokemonList}

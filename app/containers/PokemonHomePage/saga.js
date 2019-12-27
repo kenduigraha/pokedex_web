@@ -1,19 +1,26 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
-import { GET_POKEMON_LIST_START } from 'containers/PokemonHomePage/constants';
+import { call, put, all, takeLatest } from 'redux-saga/effects';
+import {
+  GET_POKEMON_LIST_START,
+  GET_POKEMON_DETAIL_START,
+} from 'containers/PokemonHomePage/constants';
 import {
   getPokemonListSuccess,
   getPokemonListFailed,
+  getPokemonDetailSuccess,
+  getPokemonDetailFailed,
 } from 'containers/PokemonHomePage/actions';
 
 import { POKEMON } from 'utils/api';
 
 import request from 'utils/request';
 
-export function* getPokemonList({ params: { offset, limit } }) {
+export function* getPokemonList({
+  params: { offset = 0, limit = 20, name = '' },
+}) {
   try {
     const data = yield call(
       request,
-      `${POKEMON.LIST}?offset=${offset}&limit=${limit}`,
+      `${POKEMON.BASE_URL}/${name}?offset=${offset}&limit=${limit}`,
     );
     yield put(getPokemonListSuccess(data));
   } catch (err) {
@@ -21,9 +28,21 @@ export function* getPokemonList({ params: { offset, limit } }) {
   }
 }
 
+export function* getPokemonDetail({ data }) {
+  try {
+    const response = yield call(request, `${POKEMON.BASE_URL}/${data}`);
+    yield put(getPokemonDetailSuccess(response));
+  } catch (err) {
+    yield put(getPokemonDetailFailed(err));
+  }
+}
+
 /**
  * Root saga manages watcher lifecycle
  */
 export default function* pokemonHomePageSaga() {
-  yield takeLatest(GET_POKEMON_LIST_START, getPokemonList);
+  yield all([
+    yield takeLatest(GET_POKEMON_LIST_START, getPokemonList),
+    yield takeLatest(GET_POKEMON_DETAIL_START, getPokemonDetail),
+  ]);
 }
