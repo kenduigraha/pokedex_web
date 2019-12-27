@@ -147,4 +147,8 @@ module.exports = require('./webpack.base.babel')({
     assetFilter: assetFilename =>
       !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
   },
+
+  babelQuery: {
+    plugins: [['import', { libraryName: 'antd', style: true }]],
+  },
 });
