@@ -4,28 +4,24 @@ exports[`<CharactersCard /> Should render and match the snapshot 1`] = `
 <div
   class="ant-col ant-col-6 styles__CharactersCardCol-sc-1adlsw4-0 imzfEL ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8 ant-col-xl-6 ant-col-xxl-6"
 >
-  <a
-    href="/character/"
+  <div
+    class="ant-card ant-card-bordered ant-card-hoverable"
   >
     <div
-      class="ant-card ant-card-bordered"
+      class="ant-card-cover"
+    >
+      <img
+        alt=""
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/undefined.png"
+      />
+    </div>
+    <div
+      class="ant-card-body"
     >
       <div
-        class="ant-card-cover"
-      >
-        <img
-          alt=""
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/undefined.png"
-        />
-      </div>
-      <div
-        class="ant-card-body"
-      >
-        <div
-          class="ant-card-meta"
-        />
-      </div>
+        class="ant-card-meta"
+      />
     </div>
-  </a>
+  </div>
 </div>
 `;

@@ -23,7 +23,9 @@ describe('<PokemonList />', () => {
         <PokemonList
           pokemonList={{ ...initialState.pokemonList }}
           getPokemonList={() => {}}
+          getPokemonDetail={() => {}}
           updateFlagInfinity={() => {}}
+          pokemonDetail={{ ...initialState.pokemonDetail }}
         />
       </IntlProvider>,
     );
@@ -47,7 +49,9 @@ describe('<PokemonList />', () => {
         <PokemonList
           pokemonList={{ ...initialState.pokemonList }}
           getPokemonList={() => {}}
+          getPokemonDetail={() => {}}
           updateFlagInfinity={() => {}}
+          pokemonDetail={{ ...initialState.pokemonDetail }}
         />
       </IntlProvider>,
     );

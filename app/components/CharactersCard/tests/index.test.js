@@ -21,7 +21,11 @@ describe('<CharactersCard />', () => {
     render(
       <BrowserRouter>
         <IntlProvider locale={DEFAULT_LOCALE}>
-          <CharactersCard data={{ name: '', url: '' }} loading={false} />
+          <CharactersCard
+            data={{ name: '', url: '' }}
+            loading={false}
+            showModal={jest.fn()}
+          />
         </IntlProvider>
       </BrowserRouter>,
     );
@@ -39,7 +43,11 @@ describe('<CharactersCard />', () => {
     } = render(
       <BrowserRouter>
         <IntlProvider locale={DEFAULT_LOCALE}>
-          <CharactersCard data={{ name: '', url: '' }} loading={false} />
+          <CharactersCard
+            data={{ name: '', url: '' }}
+            loading={false}
+            showModal={jest.fn()}
+          />
         </IntlProvider>
       </BrowserRouter>,
     );

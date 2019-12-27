@@ -36,6 +36,7 @@ describe('<PokemonHomePage />', () => {
               pokemonHomePage={{
                 pokemonList: { ...initialState.pokemonList },
                 pokemonTypes: { ...initialState.pokemonTypes },
+                pokemonDetail: { ...initialState.pokemonDetail },
               }}
               dispatch={dispatch}
             />
