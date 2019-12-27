@@ -19,7 +19,11 @@ describe('<PokemonFilter />', () => {
     const spy = jest.spyOn(global.console, 'error');
     render(
       <IntlProvider locale={DEFAULT_LOCALE}>
-        <PokemonFilter getPokemonList={() => {}} pokemonTypes={[]} />
+        <PokemonFilter
+          getPokemonList={() => {}}
+          pokemonTypes={[]}
+          getPokemonListByType={() => {}}
+        />
       </IntlProvider>,
     );
     expect(spy).not.toHaveBeenCalled();
@@ -35,7 +39,11 @@ describe('<PokemonFilter />', () => {
       container: { firstChild },
     } = render(
       <IntlProvider locale={DEFAULT_LOCALE}>
-        <PokemonFilter getPokemonList={() => {}} pokemonTypes={[]} />
+        <PokemonFilter
+          getPokemonList={() => {}}
+          pokemonTypes={[]}
+          getPokemonListByType={() => {}}
+        />
       </IntlProvider>,
     );
     expect(firstChild).toMatchSnapshot();

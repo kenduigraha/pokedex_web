@@ -16,6 +16,9 @@ import {
   GET_POKEMON_TYPES_START,
   GET_POKEMON_TYPES_SUCCESS,
   GET_POKEMON_TYPES_FAILED,
+  GET_POKEMON_LIST_BY_TYPES_START,
+  GET_POKEMON_LIST_BY_TYPES_SUCCESS,
+  GET_POKEMON_LIST_BY_TYPES_FAILED,
 } from './constants';
 
 export function defaultAction() {
@@ -90,6 +93,27 @@ export function getPokemonTypesListSuccess(data) {
 export function getPokemonTypesListFailed(error) {
   return {
     type: GET_POKEMON_TYPES_FAILED,
+    error,
+  };
+}
+
+export function getPokemonListByTypeStart(params) {
+  return {
+    type: GET_POKEMON_LIST_BY_TYPES_START,
+    params,
+  };
+}
+
+export function getPokemonListByTypeSuccess(data) {
+  return {
+    type: GET_POKEMON_LIST_BY_TYPES_SUCCESS,
+    data,
+  };
+}
+
+export function getPokemonListByTypeFailed(error) {
+  return {
+    type: GET_POKEMON_LIST_BY_TYPES_FAILED,
     error,
   };
 }

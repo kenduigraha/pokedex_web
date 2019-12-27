@@ -16,6 +16,9 @@ import {
   GET_POKEMON_TYPES_START,
   GET_POKEMON_TYPES_SUCCESS,
   GET_POKEMON_TYPES_FAILED,
+  GET_POKEMON_LIST_BY_TYPES_START,
+  GET_POKEMON_LIST_BY_TYPES_SUCCESS,
+  GET_POKEMON_LIST_BY_TYPES_FAILED,
 } from './constants';
 
 export const initialState = {
@@ -43,6 +46,7 @@ const pokemonHomePageReducer = (state = initialState, action) =>
     switch (action.type) {
       case DEFAULT_ACTION:
         break;
+      case GET_POKEMON_LIST_BY_TYPES_START:
       case GET_POKEMON_LIST_START:
         draft.pokemonList.isLoading = true;
         break;
@@ -59,6 +63,14 @@ const pokemonHomePageReducer = (state = initialState, action) =>
           draft.pokemonList.data = action.data.results ? results : [];
         }
         break;
+
+      case GET_POKEMON_LIST_BY_TYPES_SUCCESS:
+        draft.pokemonList.isLoading = false;
+        draft.pokemonList.data = action.data.pokemon.map(detail => ({
+          ...detail.pokemon,
+        }));
+        break;
+      case GET_POKEMON_LIST_BY_TYPES_FAILED:
       case GET_POKEMON_LIST_FAILED:
         draft.pokemonList.isLoading = false;
         draft.pokemonList.infinity = false;

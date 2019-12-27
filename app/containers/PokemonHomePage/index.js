@@ -18,6 +18,7 @@ import {
   getPokemonListStart,
   updateFlagInfinityStart,
   getPokemonTypesListStart,
+  getPokemonListByTypeStart,
   // getPokemonDetailStart,
 } from 'containers/PokemonHomePage/actions';
 import PokemonFilter from 'components/PokemonFilter';
@@ -37,6 +38,8 @@ export function PokemonHomePage({ dispatch, pokemonHomePage }) {
    * dispatch actions
    */
   const getPokemonList = params => dispatch(getPokemonListStart(params));
+  const getPokemonListByType = type =>
+    dispatch(getPokemonListByTypeStart(type));
   const getPokemonTypesList = () => dispatch(getPokemonTypesListStart());
   const updateFlagInfinity = flag => dispatch(updateFlagInfinityStart(flag));
   // const getPokemonDetail = data => dispatch(getPokemonDetailStart(data));
@@ -68,6 +71,7 @@ export function PokemonHomePage({ dispatch, pokemonHomePage }) {
       </Helmet>
       <PokemonFilter
         getPokemonList={getPokemonList}
+        getPokemonListByType={getPokemonListByType}
         pokemonTypes={pokemonTypes.data}
       />
       <PokemonList

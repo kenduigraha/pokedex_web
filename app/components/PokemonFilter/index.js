@@ -22,11 +22,11 @@ const PokemonFilterRow = styled(Row)`
   padding-right: 30px;
 `;
 
-function PokemonFilter({ getPokemonList, pokemonTypes }) {
+function PokemonFilter({ getPokemonList, pokemonTypes, getPokemonListByType }) {
   const [dataInput, setDataInput] = useState('');
 
   const handleChange = value => {
-    console.log(value);
+    getPokemonListByType(value);
   };
 
   return (
@@ -61,6 +61,7 @@ function PokemonFilter({ getPokemonList, pokemonTypes }) {
 
 PokemonFilter.propTypes = {
   getPokemonList: PropTypes.func.isRequired,
+  getPokemonListByType: PropTypes.func.isRequired,
   pokemonTypes: PropTypes.array.isRequired,
 };
 

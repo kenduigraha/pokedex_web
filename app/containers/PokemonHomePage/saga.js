@@ -3,6 +3,7 @@ import {
   GET_POKEMON_LIST_START,
   GET_POKEMON_DETAIL_START,
   GET_POKEMON_TYPES_START,
+  GET_POKEMON_LIST_BY_TYPES_START,
 } from 'containers/PokemonHomePage/constants';
 import {
   getPokemonListSuccess,
@@ -11,6 +12,8 @@ import {
   getPokemonDetailFailed,
   getPokemonTypesListSuccess,
   getPokemonTypesListFailed,
+  getPokemonListByTypeSuccess,
+  getPokemonListByTypeFailed,
 } from 'containers/PokemonHomePage/actions';
 
 import { POKEMON } from 'utils/api';
@@ -39,6 +42,14 @@ export function* getPokemonTypesList() {
     yield put(getPokemonTypesListFailed(err));
   }
 }
+export function* getPokemonListByTpe({ params }) {
+  try {
+    const data = yield call(request, `${POKEMON.TYPE}/${params}`);
+    yield put(getPokemonListByTypeSuccess(data));
+  } catch (err) {
+    yield put(getPokemonListByTypeFailed(err));
+  }
+}
 
 export function* getPokemonDetail({ data }) {
   try {
@@ -57,5 +68,6 @@ export default function* pokemonHomePageSaga() {
     yield takeLatest(GET_POKEMON_LIST_START, getPokemonList),
     yield takeLatest(GET_POKEMON_DETAIL_START, getPokemonDetail),
     yield takeLatest(GET_POKEMON_TYPES_START, getPokemonTypesList),
+    yield takeLatest(GET_POKEMON_LIST_BY_TYPES_START, getPokemonListByTpe),
   ]);
 }
