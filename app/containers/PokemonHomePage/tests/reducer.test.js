@@ -1,5 +1,5 @@
 // import produce from 'immer';
-import pokemonHomePageReducer from '../reducer';
+import pokemonHomePageReducer, { initialState } from '../reducer';
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
@@ -8,6 +8,7 @@ describe('pokemonHomePageReducer', () => {
   beforeEach(() => {
     state = {
       // default state params here
+      ...initialState,
     };
   });
 
