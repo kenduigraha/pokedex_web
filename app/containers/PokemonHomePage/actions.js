@@ -9,6 +9,7 @@ import {
   GET_POKEMON_LIST_START,
   GET_POKEMON_LIST_SUCCESS,
   GET_POKEMON_LIST_FAILED,
+  UPDATE_FLAG_INFINITY,
 } from './constants';
 
 export function defaultAction() {
@@ -17,9 +18,10 @@ export function defaultAction() {
   };
 }
 
-export function getPokemonListStart() {
+export function getPokemonListStart(params) {
   return {
     type: GET_POKEMON_LIST_START,
+    params,
   };
 }
 
@@ -34,5 +36,12 @@ export function getPokemonListFailed(error) {
   return {
     type: GET_POKEMON_LIST_FAILED,
     error,
+  };
+}
+
+export function updateFlagInfinityStart(flag) {
+  return {
+    type: UPDATE_FLAG_INFINITY,
+    data: flag,
   };
 }

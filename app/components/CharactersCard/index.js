@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Card, Col, Avatar } from 'antd';
+import { Card, Col } from 'antd';
 
 import { POKEMON_IMAGE_URL } from 'utils/constants';
 const { Meta } = Card;
@@ -25,20 +25,11 @@ const CharactersCard = ({ data, loading }) => (
         cover={
           <img
             alt={data.name}
-            width="323"
-            height="323"
             src={`${POKEMON_IMAGE_URL}/${getIdPokemon(data.url)}.png`}
           />
         }
       >
-        <Meta
-          avatar={
-            <Avatar
-              src={`${POKEMON_IMAGE_URL}/${getIdPokemon(data.url)}.png`}
-            />
-          }
-          title={data.name}
-        />
+        <Meta title={data.name} />
       </Card>
     </Link>
   </Col>

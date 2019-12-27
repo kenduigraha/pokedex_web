@@ -9,6 +9,7 @@ import {
   GET_POKEMON_LIST_START,
   GET_POKEMON_LIST_SUCCESS,
   GET_POKEMON_LIST_FAILED,
+  UPDATE_FLAG_INFINITY,
 } from './constants';
 
 export const initialState = {
@@ -16,6 +17,7 @@ export const initialState = {
     data: [],
     error: {},
     isLoading: false,
+    infinity: false,
   },
 };
 
@@ -30,12 +32,18 @@ const pokemonHomePageReducer = (state = initialState, action) =>
         break;
       case GET_POKEMON_LIST_SUCCESS:
         draft.pokemonList.isLoading = false;
-        draft.pokemonList.data = action.data.results ? action.data.results : [];
+        draft.pokemonList.data = action.data.results
+          ? state.pokemonList.data.concat(action.data.results)
+          : [];
         break;
       case GET_POKEMON_LIST_FAILED:
         draft.pokemonList.isLoading = false;
+        draft.pokemonList.infinity = false;
         draft.pokemonList.data = [];
         draft.pokemonList.error = action.error;
+        break;
+      case UPDATE_FLAG_INFINITY:
+        draft.pokemonList.infinity = action.data;
         break;
     }
   });

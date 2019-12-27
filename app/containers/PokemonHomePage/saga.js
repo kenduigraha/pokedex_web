@@ -9,9 +9,12 @@ import { POKEMON } from 'utils/api';
 
 import request from 'utils/request';
 
-export function* getPokemonList() {
+export function* getPokemonList({ params: { offset, limit } }) {
   try {
-    const data = yield call(request, POKEMON.LIST);
+    const data = yield call(
+      request,
+      `${POKEMON.LIST}?offset=${offset}&limit=${limit}`,
+    );
     yield put(getPokemonListSuccess(data));
   } catch (err) {
     yield put(getPokemonListFailed(err));
