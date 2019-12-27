@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -14,14 +14,24 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import { getPokemonListStart } from 'containers/PokemonHomePage/actions';
 import makeSelectPokemonHomePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
-export function PokemonHomePage() {
+export function PokemonHomePage({ dispatch }) {
   useInjectReducer({ key: 'pokemonHomePage', reducer });
   useInjectSaga({ key: 'pokemonHomePage', saga });
+
+  /**
+   * dispatch actions
+   */
+  const getPokemonList = () => dispatch(getPokemonListStart());
+
+  useEffect(() => {
+    getPokemonList();
+  }, []);
 
   return (
     <div>

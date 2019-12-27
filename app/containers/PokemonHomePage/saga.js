@@ -1,6 +1,26 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
+import { GET_POKEMON_LIST_START } from 'containers/PokemonHomePage/constants';
+import {
+  getPokemonListSuccess,
+  getPokemonListFailed,
+} from 'containers/PokemonHomePage/actions';
 
-// Individual exports for testing
+import { POKEMON } from 'utils/api';
+
+import request from 'utils/request';
+
+export function* getPokemonList() {
+  try {
+    const data = yield call(request, POKEMON.LIST);
+    yield put(getPokemonListSuccess(data));
+  } catch (err) {
+    yield put(getPokemonListFailed(err));
+  }
+}
+
+/**
+ * Root saga manages watcher lifecycle
+ */
 export default function* pokemonHomePageSaga() {
-  // See example in containers/HomePage/saga.js
+  yield takeLatest(GET_POKEMON_LIST_START, getPokemonList);
 }
