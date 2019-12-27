@@ -13,6 +13,7 @@ import {
   GET_POKEMON_DETAIL_START,
   GET_POKEMON_DETAIL_SUCCESS,
   GET_POKEMON_DETAIL_FAILED,
+  RESET_POKEMON_DETAIL,
   GET_POKEMON_TYPES_START,
   GET_POKEMON_TYPES_SUCCESS,
   GET_POKEMON_TYPES_FAILED,
@@ -73,6 +74,12 @@ export function getPokemonDetailFailed(error) {
   return {
     type: GET_POKEMON_DETAIL_FAILED,
     error,
+  };
+}
+
+export function resetPokemonDetailStart() {
+  return {
+    type: RESET_POKEMON_DETAIL,
   };
 }
 

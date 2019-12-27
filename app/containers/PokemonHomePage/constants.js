@@ -20,6 +20,7 @@ export const GET_POKEMON_DETAIL_SUCCESS =
   'app/PokemonHomePage/GET_POKEMON_DETAIL_SUCCESS';
 export const GET_POKEMON_DETAIL_FAILED =
   'app/PokemonHomePage/GET_POKEMON_DETAIL_FAILED';
+export const RESET_POKEMON_DETAIL = 'app/PokemonHomePage/RESET_POKEMON_DETAIL';
 
 export const GET_POKEMON_TYPES_START =
   'app/PokemonHomePage/GET_POKEMON_TYPES_START';

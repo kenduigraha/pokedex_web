@@ -20,6 +20,7 @@ import {
   getPokemonTypesListStart,
   getPokemonListByTypeStart,
   getPokemonDetailStart,
+  resetPokemonDetailStart,
 } from 'containers/PokemonHomePage/actions';
 import PokemonFilter from 'components/PokemonFilter';
 import PokemonList from 'components/PokemonList';
@@ -42,6 +43,7 @@ export function PokemonHomePage({ dispatch, pokemonHomePage }) {
   const getPokemonTypesList = () => dispatch(getPokemonTypesListStart());
   const updateFlagInfinity = flag => dispatch(updateFlagInfinityStart(flag));
   const getPokemonDetail = data => dispatch(getPokemonDetailStart(data));
+  const resetPokemonDetail = () => dispatch(resetPokemonDetailStart());
 
   useEffect(() => {
     getPokemonList({ offset: 0, limit: 20, name: '' });
@@ -79,6 +81,7 @@ export function PokemonHomePage({ dispatch, pokemonHomePage }) {
         updateFlagInfinity={updateFlagInfinity}
         getPokemonDetail={getPokemonDetail}
         pokemonDetail={pokemonDetail}
+        resetPokemonDetail={resetPokemonDetail}
       />
     </div>
   );

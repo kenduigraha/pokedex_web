@@ -37,12 +37,6 @@ class PokemonList extends PureComponent {
     if (nextProps.pokemonList.infinity === false) {
       this.setState({ cardLoading: false });
     }
-
-    if (Object.keys(nextProps.pokemonDetail.data).length > 0) {
-      this.setState({
-        visible: true,
-      });
-    }
   }
 
   /**
@@ -93,6 +87,9 @@ class PokemonList extends PureComponent {
 
   showModal = name => {
     this.props.getPokemonDetail(name);
+    this.setState({
+      visible: true,
+    });
   };
 
   handleOk = () => {

@@ -13,6 +13,7 @@ import {
   GET_POKEMON_DETAIL_START,
   GET_POKEMON_DETAIL_SUCCESS,
   GET_POKEMON_DETAIL_FAILED,
+  RESET_POKEMON_DETAIL,
   GET_POKEMON_TYPES_START,
   GET_POKEMON_TYPES_SUCCESS,
   GET_POKEMON_TYPES_FAILED,
@@ -29,7 +30,17 @@ export const initialState = {
     infinity: false,
   },
   pokemonDetail: {
-    data: {},
+    data: {
+      species: {
+        name: '',
+        url: '',
+      },
+      types: [],
+      stats: '',
+      height: '',
+      weight: '',
+      base_experience: '',
+    },
     error: {},
     isLoading: false,
   },
@@ -49,6 +60,7 @@ const pokemonHomePageReducer = (state = initialState, action) =>
       case GET_POKEMON_LIST_BY_TYPES_START:
       case GET_POKEMON_LIST_START:
         draft.pokemonList.isLoading = true;
+        draft.pokemonList.error = {};
         break;
       case GET_POKEMON_LIST_SUCCESS:
         draft.pokemonList.isLoading = false;
@@ -62,6 +74,7 @@ const pokemonHomePageReducer = (state = initialState, action) =>
 
           draft.pokemonList.data = action.data.results ? results : [];
         }
+        draft.pokemonList.error = {};
         break;
 
       case GET_POKEMON_LIST_BY_TYPES_SUCCESS:
@@ -93,6 +106,11 @@ const pokemonHomePageReducer = (state = initialState, action) =>
         draft.pokemonDetail.isLoading = false;
         draft.pokemonDetail.data = [];
         draft.pokemonDetail.error = action.error;
+        break;
+      case RESET_POKEMON_DETAIL:
+        draft.pokemonDetail.data = {};
+        draft.pokemonDetail.error = {};
+        draft.pokemonDetail.isLoading = false;
         break;
 
       // GET LIST POKEMON TYPES
