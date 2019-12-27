@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CharactersCard /> Should render and match the snapshot 1`] = `
+<div
+  class="ant-col ant-col-6 ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-8 ant-col-xl-6 ant-col-xxl-6"
+  style="margin-bottom: 20px;"
+>
+  <a
+    href="/character/"
+  >
+    <div
+      class="ant-card ant-card-bordered"
+    >
+      <div
+        class="ant-card-cover"
+      >
+        <img
+          alt=""
+          height="323"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/undefined.png"
+          width="323"
+        />
+      </div>
+      <div
+        class="ant-card-body"
+      >
+        <div
+          class="ant-card-meta"
+        >
+          <div
+            class="ant-card-meta-avatar"
+          >
+            <span
+              class="ant-avatar ant-avatar-circle ant-avatar-image"
+            >
+              <img
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/undefined.png"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
+`;
