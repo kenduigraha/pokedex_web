@@ -2,8 +2,8 @@
 
 exports[`<PokemonList /> Should render and match the snapshot 1`] = `
 <div
+  class="styles__PokemonListDiv-sc-1b5lzlw-0 cJsYwM"
   id="content"
-  style="background: rgb(236, 236, 236); padding: 30px;"
 >
   <div>
     <div

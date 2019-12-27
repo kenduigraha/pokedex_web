@@ -27,12 +27,17 @@ describe('<PokemonHomePage />', () => {
   });
 
   it('should render and match the snapshot', () => {
+    const dispatch = jest.fn();
     const renderedComponent = renderer
       .create(
         <Provider store={store}>
           <IntlProvider locale="en">
             <PokemonHomePage
-              pokemonHomePage={{ pokemonList: { ...initialState.pokemonList } }}
+              pokemonHomePage={{
+                pokemonList: { ...initialState.pokemonList },
+                pokemonTypes: { ...initialState.pokemonTypes },
+              }}
+              dispatch={dispatch}
             />
           </IntlProvider>
         </Provider>,
