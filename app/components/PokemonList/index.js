@@ -12,6 +12,7 @@ import CharactersCard from 'components/CharactersCard';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
+import PokemonListDiv from './styles';
 
 class PokemonList extends PureComponent {
   constructor(props) {
@@ -87,7 +88,8 @@ class PokemonList extends PureComponent {
   render() {
     const { pokemonList } = this.props;
     return (
-      <div id="content" style={{ background: '#ECECEC', padding: '30px' }}>
+      <PokemonListDiv id="content">
+        {Object.keys(pokemonList.error).length > 0 && 'Pokémon Not Found'}
         {pokemonList.infinity === false && pokemonList.isLoading === true ? (
           'loading'
         ) : (
@@ -104,7 +106,7 @@ class PokemonList extends PureComponent {
             {pokemonList.infinity === true && 'loading'}
           </div>
         )}
-      </div>
+      </PokemonListDiv>
     );
   }
 }
